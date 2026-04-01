@@ -14,7 +14,89 @@ export type Database = {
   }
   public: {
     Tables: {
-      [_ in never]: never
+      alerts: {
+        Row: {
+          alert_type: string
+          created_at: string
+          id: string
+          is_read: boolean
+          message: string
+          transaction_id: string
+          user_id: string
+        }
+        Insert: {
+          alert_type: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message: string
+          transaction_id: string
+          user_id: string
+        }
+        Update: {
+          alert_type?: string
+          created_at?: string
+          id?: string
+          is_read?: boolean
+          message?: string
+          transaction_id?: string
+          user_id?: string
+        }
+        Relationships: [
+          {
+            foreignKeyName: "alerts_transaction_id_fkey"
+            columns: ["transaction_id"]
+            isOneToOne: false
+            referencedRelation: "transactions"
+            referencedColumns: ["id"]
+          },
+        ]
+      }
+      transactions: {
+        Row: {
+          ai_reasoning: string | null
+          amount: number
+          created_at: string
+          device_type: string
+          id: string
+          location: string
+          receiver_upi: string
+          risk_score: number
+          sender_upi: string
+          status: string
+          transaction_time: string
+          user_id: string
+        }
+        Insert: {
+          ai_reasoning?: string | null
+          amount: number
+          created_at?: string
+          device_type?: string
+          id?: string
+          location?: string
+          receiver_upi: string
+          risk_score?: number
+          sender_upi: string
+          status?: string
+          transaction_time?: string
+          user_id: string
+        }
+        Update: {
+          ai_reasoning?: string | null
+          amount?: number
+          created_at?: string
+          device_type?: string
+          id?: string
+          location?: string
+          receiver_upi?: string
+          risk_score?: number
+          sender_upi?: string
+          status?: string
+          transaction_time?: string
+          user_id?: string
+        }
+        Relationships: []
+      }
     }
     Views: {
       [_ in never]: never
